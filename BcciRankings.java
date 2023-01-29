@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import java.util.Scanner;
 
-public class BcciRankings {
+public class RankList {
     public static void main(String[] args) throws IOException {
         Scanner getInput = new Scanner(System.in);
         BufferedReader getinput = new BufferedReader(new InputStreamReader(System.in));
