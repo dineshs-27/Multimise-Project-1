@@ -8,17 +8,15 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 
-import java.util.Objects;
-
 import java.util.Scanner;
 
 public class RankList {
     public static void main(String[] args) throws IOException {
         Scanner getInput = new Scanner(System.in);
         BufferedReader getinput = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<Integer> list1 = new ArrayList<>();
-        ArrayList<String> list2 = new ArrayList<>();
-        ArrayList<Integer> list3 = new ArrayList<>();
+        ArrayList<Integer> Total = new ArrayList<>();
+        ArrayList<String> Players = new ArrayList<>();
+        ArrayList<Integer> SortedTotal = new ArrayList<>();
         System.out.println("Enter the Number of Players : ");
         int x = getInput.nextInt();
         for(int i=0; i<x; i++) {
@@ -30,13 +28,13 @@ public class RankList {
             int b = getInput.nextInt();
             System.out.println("Enter the Score in Match 3 : ");
             int c = getInput.nextInt();
-            int Total = a+b+c;
-            list1.add(Total);
-            list2.add(P);
+            int total = a+b+c;
+            Total.add(total);
+            Players.add(P);
         }
-        int[] arr1 = new int[list1.size()];
-        for(int i=0; i<list1.size(); i++){
-            arr1[i] = list1.get(i);
+        int[] arr1 = new int[Total.size()];
+        for(int i=0; i<Total.size(); i++){
+            arr1[i] = Total.get(i);
         }
         int temp;
         for(int j=0; j<arr1.length; j++){
@@ -49,24 +47,28 @@ public class RankList {
             }
         }
         for(int l=0; l<arr1.length; l++){
-            list3.add(arr1[l]);
+            SortedTotal.add(arr1[l]);
         }
-        System.out.println("\nTotal Players : " + list2);
+        System.out.println("\nTotal Players : ");
+        for(int r=0; r<Players.size(); r++){
+            System.out.println(Players.get(r));
+        }
         System.out.println("\nTo see the players stats, Enter the number of player's stats want to see : ");
         int y = getInput.nextInt();
         for(int n=0; n<y; n++){
             System.out.println("\nPlease enter the name : ");
             String S = getinput.readLine();
-            for(int q=0; q<list2.size(); q++) {
-                if(S.equals(list2.get(q))) {
-                    System.out.println("Player Name : " + S);
-                    System.out.println("Total Runs : " + list1.get(q));
-                    for (int p=0; p<list3.size(); p++) {
-                        if(Objects.equals(list1.get(q),list3.get(p))) {
-                            System.out.println("Position : " + (p + 1) + " rank");
-                        }
+            if(S.equals(Players.get(n))) {
+                for (int q = 0; q < Players.size(); q++) {
+                    if (S.equals(Players.get(q))) {
+                        System.out.println("Player Name : " + S);
+                        System.out.println("Total Score in 3 Matches : " + Total.get(q));
+                        System.out.println("Position : " + (SortedTotal.indexOf(Total.get(q)) + 1) + " rank");
                     }
                 }
+            }
+            else{
+                System.out.println("Player doesn't exist !\n");
             }
         }
     }
